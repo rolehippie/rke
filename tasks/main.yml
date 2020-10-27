@@ -87,6 +87,9 @@
   copy:
     content: "{{ rke_config_slurp.content | b64decode }}"
     dest: /etc/kubernetes/admin.conf
+    owner: "{{ rke_config_owner }}"
+    group: "{{ rke_config_group }}"
+    mode: "{{ rke_config_mode }}"
   tags:
     - rke
 

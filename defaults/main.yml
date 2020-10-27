@@ -166,6 +166,15 @@ rke_provider_config:
 # @end
 rke_copy_kubeconfig: []
 
+# @var rke_config_owner:description: Owner of the copied kubeconfig
+rke_config_owner: root
+
+# @var rke_force_update:description: Group of the copied kubeconfig
+rke_config_group: root
+
+# @var rke_force_update:description: Mode of the copied kubeconfig
+rke_config_mode: u=rw,g=r,o=
+
 # @var rke_force_update:description: Force cluster update even without config changes
 rke_force_update: False
 

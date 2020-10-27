@@ -24,6 +24,9 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
   * [rke_binary_version](#rke_binary_version)
   * [rke_cluster_name](#rke_cluster_name)
   * [rke_config_dir](#rke_config_dir)
+  * [rke_config_group](#rke_config_group)
+  * [rke_config_mode](#rke_config_mode)
+  * [rke_config_owner](#rke_config_owner)
   * [rke_controller_config](#rke_controller_config)
   * [rke_copy_kubeconfig](#rke_copy_kubeconfig)
   * [rke_dns_config](#rke_dns_config)
@@ -174,6 +177,32 @@ Path to for configuration and state
 
 ```YAML
 rke_config_dir: /etc/rke
+```
+
+### rke_config_group
+
+#### Default value
+
+```YAML
+rke_config_group: root
+```
+
+### rke_config_mode
+
+#### Default value
+
+```YAML
+rke_config_mode: u=rw,g=r,o=
+```
+
+### rke_config_owner
+
+Owner of the copied kubeconfig
+
+#### Default value
+
+```YAML
+rke_config_owner: root
 ```
 
 ### rke_controller_config
