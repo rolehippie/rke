@@ -85,7 +85,7 @@ rke_auth_sans: []
 ```YAML
 rke_auth_sans:
   - 192.168.1.254
-  - kubernetes.internal.proactcloud.de
+  - kubernetes.example.com
 ```
 
 ### rke_auth_strategy

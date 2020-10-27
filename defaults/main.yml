@@ -31,7 +31,7 @@ rke_auth_strategy: x509
 # @var rke_auth_sans:example: >
 # rke_auth_sans:
 #   - 192.168.1.254
-#   - kubernetes.internal.proactcloud.de
+#   - kubernetes.example.com
 # @end
 rke_auth_sans: []
 
