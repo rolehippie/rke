@@ -1,0 +1,7 @@
+---
+rules:
+  exclude_files:
+    - molecule/default/tests
+    - README.md
+
+...

@@ -1,0 +1,93 @@
+# Standards: 1.2
+---
+- name: Install rke binary
+  notify:
+    - Update cluster
+  get_url:
+    url: "{{ rke_binary_download }}"
+    checksum: "{{ rke_binary_checksum }}"
+    dest: /usr/bin/rke
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  tags:
+    - rke
+
+- name: Create config directory
+  notify:
+    - Update cluster
+  file:
+    path: "{{ rke_config_dir }}"
+    state: directory
+    owner: root
+    group: root
+  tags:
+    - rke
+
+- name: Write cluster config
+  notify:
+    - Update cluster
+  template:
+    src: config.j2
+    dest: "{{ rke_config_dir }}/cluster.yml"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=
+  tags:
+    - rke
+
+- name: Force cluster update
+  when: rke_force_update
+  shell:
+    cmd: rke up | tee -a /var/log/rke.log
+    chdir: "{{ rke_config_dir }}"
+  tags:
+    - rke
+
+- name: Write profile script
+  template:
+    src: profile.j2
+    dest: /etc/profile.d/rke.sh
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  tags:
+    - rke
+
+- name: Check kube config
+  when: rke_copy_kubeconfig | default(False)
+  register: rke_config_check
+  stat:
+    path: "{{ rke_config_dir }}/kube_config_cluster.yml"
+  tags:
+    - rke
+
+- name: Fetch kube config
+  when: rke_config_check.stat.exists | default(False)
+  register: rke_config_slurp
+  slurp:
+    src: "{{ rke_config_dir }}/kube_config_cluster.yml"
+  tags:
+    - rke
+
+- name: Create kube directory
+  when: rke_config_slurp.content | default(False)
+  loop: "{{ rke_copy_kubeconfig }}"
+  delegate_to: "{{ item }}"
+  file:
+    path: /etc/kubernetes
+    state: directory
+  tags:
+    - rke
+
+- name: Copy kube config
+  when: rke_config_slurp.content | default(False)
+  loop: "{{ rke_copy_kubeconfig }}"
+  delegate_to: "{{ item }}"
+  copy:
+    content: "{{ rke_config_slurp.content | b64decode }}"
+    dest: /etc/kubernetes/admin.conf
+  tags:
+    - rke
+
+...

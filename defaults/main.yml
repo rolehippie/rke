@@ -1,0 +1,172 @@
+# Standards: 1.2
+---
+# @var rke_binary_version:description: Version of the RKE release to use
+rke_binary_version: 1.2.1
+
+# @var rke_binary_download:description: URL to download the release binary
+rke_binary_download: https://github.com/rancher/rke/releases/download/v{{ rke_binary_version }}/rke_linux-amd64
+
+# @var rke_binary_checksum:description: Checksum of the binary to download
+rke_binary_checksum: sha256:e1e288d557cea6140f16ba6659fe427fb7431c3cd62cc67f2cdfdf415a4012da
+
+# @var rke_kubernetes_version:description: Kubernetes version to install
+rke_kubernetes_version: "1.19"
+
+# @var rke_kubernetes_support:description: Mapping for supported Kubernetes versions
+rke_kubernetes_support:
+  "1.17": v1.17.13-rancher1-1
+  "1.18": v1.18.10-rancher1-1
+  "1.19": v1.19.3-rancher1-1
+
+# @var rke_config_dir:description: Path to for configuration and state
+rke_config_dir: /etc/rke
+
+# @var rke_cluster_name:description: Name of the Kubernetes cluster
+rke_cluster_name:
+
+# @var rke_auth_strategy:description: Authentication strategy
+rke_auth_strategy: x509
+
+# @var rke_auth_sans:description: List of SANs for the Kubernetes API
+# @var rke_auth_sans:example: >
+# rke_auth_sans:
+#   - 192.168.1.254
+#   - kubernetes.internal.proactcloud.de
+# @end
+rke_auth_sans: []
+
+# @var rke_auth_mode:description: Authorization mode
+rke_auth_mode: rbac
+
+# @var rke_nodes_config:description: Nodes configuration
+# @var rke_nodes_config:example: >
+# rke_nodes_config: |
+#   {% for node in groups['server'] %}
+#     - hostname_override: {{ node }}
+#       address: {{ hostvars[host]['ansible_host'] }}
+#       user: rke
+#       role:
+#         - controlplane
+#         - etcd
+#   {% endfor %}
+#   {% for node in groups['worker'] %}
+#     - hostname_override: {{ node }}
+#       address: {{ hostvars[host]['ansible_host'] }}
+#       user: rke
+#       role:
+#         - worker
+#   {% endfor %}
+# @end
+rke_nodes_config:
+
+# @var rke_network_plugin:description: Network plugin
+rke_network_plugin: weave
+
+# @var rke_network_options:description: Network options
+rke_network_options:
+
+# @var rke_network_password:description: Weave password
+rke_network_password: p455w0rd
+
+# @var rke_backup_enabled:description: Enable etcd backups
+rke_backup_enabled: False
+
+# @var rke_backup_interval:description: Interval for etcd backups
+rke_backup_interval: 24
+
+# @var rke_backup_retention:description: Retention for etcd backups
+rke_backup_retention: 7
+
+# @var rke_s3_endpoint:description: Backup S3 endpoint
+rke_s3_endpoint:
+
+# @var rke_s3_region:description: Backup S3 region
+rke_s3_region:
+
+# @var rke_s3_access:description: Backup S3 access key
+rke_s3_access:
+
+# @var rke_s3_secret:description: Backup S3 secret key
+rke_s3_secret:
+
+# @var rke_s3_bucket:description: Backup S3 bucket
+rke_s3_bucket:
+
+# @var rke_s3_folder:description: Backup S3 folder
+rke_s3_folder:
+
+# @var rke_etcd_config:description: Etcd configuration
+rke_etcd_config:
+
+# @var rke_etcd_config:description: Kubeapi configuration
+rke_kubeapi_config:
+  always_pull_images: True
+  audit_log:
+    enabled: True
+  secrets_encryption_config:
+    enabled: true
+
+# @var rke_etcd_config:description: Controller configuration
+rke_controller_config:
+
+# @var rke_etcd_config:description: Kubelet configuration
+rke_kubelet_config:
+
+# @var rke_etcd_config:description: Kubeproxy configuration
+rke_kubeproxy_config:
+
+# @var rke_etcd_config:description: Scheduler configuration
+rke_scheduler_config:
+
+# @var rke_dns_config:description: DNS configuration
+rke_dns_config:
+  provider: coredns
+  nodelocal:
+    ip_address: 169.254.20.10
+  upstreamnameservers:
+    - 1.1.1.1
+    - 8.8.8.8
+
+# @var rke_ingress_config:description: Ingress configuration
+rke_ingress_config:
+  provider: nginx
+  dns_policy: ClusterFirstWithHostNet
+
+# @var rke_registries_config:description: System images configuration
+# @var rke_registries_config:example: >
+# rke_registries_config:
+#   - url: registry.example.com
+#     user: username
+#     password: p455w0rd
+#   - url: registry.foobar.com
+#     user: username
+#     password: p455w0rd
+#     is_default: True
+# @end
+rke_registries_config:
+
+# @var rke_images_config:description: System images configuration
+# @var rke_images_config:example: >
+# rke_images_config:
+#   etcd: rancher/coreos-etcd:v3.2.24
+#   alpine: rancher/rke-tools:v0.1.24
+#   nginx_proxy: rancher/rke-tools:v0.1.24
+# @end
+rke_images_config:
+
+# @var rke_provider_config:description: Cloud provider configuration
+rke_provider_config:
+
+# @var rke_copy_kubeconfig:description: Copy kubeconfig to these nodes
+# @var rke_copy_kubeconfig:example: >
+# rke_copy_kubeconfig:
+#   - master-01
+#   - master-02
+#   - master-03
+# @end
+rke_copy_kubeconfig: []
+
+# @var rke_force_update:description: Force cluster update even without config changes
+rke_force_update: False
+
+...
