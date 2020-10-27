@@ -104,7 +104,7 @@ rke_kubeapi_config:
   audit_log:
     enabled: True
   secrets_encryption_config:
-    enabled: true
+    enabled: True
 
 # @var rke_etcd_config:description: Controller configuration
 rke_controller_config:
