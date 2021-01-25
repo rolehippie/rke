@@ -1,8 +1,6 @@
 # Standards: 1.2
 ---
 - name: Install rke binary
-  notify:
-    - Update cluster
   get_url:
     url: "{{ rke_binary_download }}"
     checksum: "{{ rke_binary_checksum }}"
@@ -14,8 +12,6 @@
     - rke
 
 - name: Create config directory
-  notify:
-    - Update cluster
   file:
     path: "{{ rke_config_dir }}"
     state: directory
@@ -25,8 +21,7 @@
     - rke
 
 - name: Write cluster config
-  notify:
-    - Update cluster
+  register: rke_config_file
   template:
     src: config.j2
     dest: "{{ rke_config_dir }}/cluster.yml"
@@ -37,7 +32,7 @@
     - rke
 
 - name: Force cluster update
-  when: rke_force_update
+  when: rke_force_update or rke_config_file.changed
   shell:
     cmd: rke up | tee -a /var/log/rke.log
     chdir: "{{ rke_config_dir }}"
@@ -57,6 +52,9 @@
 - name: Check kube config
   when: rke_copy_kubeconfig | default(False)
   register: rke_config_check
+  until: rke_config_check.stat.exists
+  retries: 10
+  delay: 5
   stat:
     path: "{{ rke_config_dir }}/kube_config_cluster.yml"
   tags:
@@ -70,9 +68,23 @@
   tags:
     - rke
 
+- name: Extract kube config
+  when: rke_config_slurp.content | default(False)
+  set_fact:
+    rke_config_content: "{{ rke_config_slurp.content | b64decode | from_yaml }}"
+  tags:
+    - rke
+
+- name: Update kube config
+  when: rke_config_slurp.content | default(False) and rke_external_domain | default(False)
+  set_fact:
+    rke_config_content: "{{ rke_config_content | combine({ 'clusters': [ { 'name': rke_cluster_name, 'cluster': { 'certificate-authority-data': rke_config_content['clusters'][0]['cluster']['certificate-authority-data'], 'server': rke_external_domain } } ] }, recursive=True) }}"
+  tags:
+    - rke
+
 - name: Create kube directory
   when: rke_config_slurp.content | default(False)
-  loop: "{{ rke_copy_kubeconfig }}"
+  loop: "{{ rke_copy_kubeconfig | sort }}"
   delegate_to: "{{ item }}"
   file:
     path: /etc/kubernetes
@@ -82,10 +94,10 @@
 
 - name: Copy kube config
   when: rke_config_slurp.content | default(False)
-  loop: "{{ rke_copy_kubeconfig }}"
+  loop: "{{ rke_copy_kubeconfig | sort }}"
   delegate_to: "{{ item }}"
   copy:
-    content: "{{ rke_config_slurp.content | b64decode }}"
+    content: "{{ rke_config_content | to_nice_yaml(indent=2) }}"
     dest: /etc/kubernetes/admin.conf
     owner: "{{ rke_config_owner }}"
     group: "{{ rke_config_group }}"

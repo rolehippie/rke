@@ -21,6 +21,9 @@ rke_kubernetes_support:
 # @var rke_config_dir:description: Path to for configuration and state
 rke_config_dir: /etc/rke
 
+# @var rke_external_domain:description: External domain to override copied kubeconfigs
+rke_external_domain:
+
 # @var rke_cluster_name:description: Name of the Kubernetes cluster
 rke_cluster_name:
 

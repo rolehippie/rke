@@ -31,6 +31,7 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
   * [rke_copy_kubeconfig](#rke_copy_kubeconfig)
   * [rke_dns_config](#rke_dns_config)
   * [rke_etcd_config](#rke_etcd_config)
+  * [rke_external_domain](#rke_external_domain)
   * [rke_force_update](#rke_force_update)
   * [rke_images_config](#rke_images_config)
   * [rke_ingress_config](#rke_ingress_config)
@@ -256,6 +257,16 @@ Scheduler configuration
 
 ```YAML
 rke_etcd_config:
+```
+
+### rke_external_domain
+
+External domain to override copied kubeconfigs
+
+#### Default value
+
+```YAML
+rke_external_domain:
 ```
 
 ### rke_force_update

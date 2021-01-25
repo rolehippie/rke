@@ -1,8 +1,0 @@
-# Standards: 0.1
----
-- name: Update cluster
-  shell:
-    cmd: rke up | tee -a /var/log/rke.log
-    chdir: "{{ rke_config_dir }}"
-
-...
