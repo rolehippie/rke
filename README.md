@@ -136,7 +136,7 @@ Checksum of the binary to download
 #### Default value
 
 ```YAML
-rke_binary_checksum: sha256:e1e288d557cea6140f16ba6659fe427fb7431c3cd62cc67f2cdfdf415a4012da
+rke_binary_checksum: sha256:6d4a44931cf2fddbac742b24a4172ecf41ab199eee047cb8fa598e15e45fff8c
 ```
 
 ### rke_binary_download
@@ -157,7 +157,7 @@ Version of the RKE release to use
 #### Default value
 
 ```YAML
-rke_binary_version: 1.2.1
+rke_binary_version: 1.2.6
 ```
 
 ### rke_cluster_name
@@ -347,9 +347,10 @@ Mapping for supported Kubernetes versions
 
 ```YAML
 rke_kubernetes_support:
-  '1.17': v1.17.13-rancher1-1
-  '1.18': v1.18.10-rancher1-1
-  '1.19': v1.19.3-rancher1-1
+  '1.17': v1.17.17-rancher2-1
+  '1.18': v1.18.16-rancher1-1
+  '1.19': v1.19.8-rancher1-1
+  '1.20': v1.20.4-rancher1-1
 ```
 
 ### rke_kubernetes_version
