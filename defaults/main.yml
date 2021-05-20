@@ -136,6 +136,50 @@ rke_ingress_config:
   provider: nginx
   dns_policy: ClusterFirstWithHostNet
 
+# @var rke_addon_default:description: List of default addons to install
+# @var rke_addon_default:example: >
+# rke_addon_default:
+#   - url: https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
+#   - name: example
+#     content:
+#       apiVersion: v1
+#       kind: Service
+#       metadata:
+#         name: example
+#         namespace: kube-system
+#       spec:
+#         ports:
+#           - name: http
+#             port: 8080
+#         selector:
+#           app.kubernetes.io/example
+#   - name: dummy
+#     state: absent
+# @end
+rke_addon_default: []
+
+# @var rke_addon_extra:description: List of extra addons to install
+# @var rke_addon_extra:example: >
+# rke_addon_extra:
+#   - url: https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
+#   - name: example
+#     content:
+#       apiVersion: v1
+#       kind: Service
+#       metadata:
+#         name: example
+#         namespace: kube-system
+#       spec:
+#         ports:
+#           - name: http
+#             port: 8080
+#         selector:
+#           app.kubernetes.io/example
+#   - name: dummy
+#     state: absent
+# @end
+rke_addon_extra: []
+
 # @var rke_registries_config:description: System images configuration
 # @var rke_registries_config:example: >
 # rke_registries_config:

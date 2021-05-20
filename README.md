@@ -13,6 +13,8 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 ## Table of content
 
 * [Default Variables](#default-variables)
+  * [rke_addon_default](#rke_addon_default)
+  * [rke_addon_extra](#rke_addon_extra)
   * [rke_auth_mode](#rke_auth_mode)
   * [rke_auth_sans](#rke_auth_sans)
   * [rke_auth_strategy](#rke_auth_strategy)
@@ -60,6 +62,70 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 ---
 
 ## Default Variables
+
+### rke_addon_default
+
+List of default addons to install
+
+#### Default value
+
+```YAML
+rke_addon_default: []
+```
+
+#### Example usage
+
+```YAML
+rke_addon_default:
+  - url: https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
+  - name: example
+    content:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: example
+        namespace: kube-system
+      spec:
+        ports:
+          - name: http
+            port: 8080
+        selector:
+          app.kubernetes.io/example
+  - name: dummy
+    state: absent
+```
+
+### rke_addon_extra
+
+List of extra addons to install
+
+#### Default value
+
+```YAML
+rke_addon_extra: []
+```
+
+#### Example usage
+
+```YAML
+rke_addon_extra:
+  - url: https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
+  - name: example
+    content:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: example
+        namespace: kube-system
+      spec:
+        ports:
+          - name: http
+            port: 8080
+        selector:
+          app.kubernetes.io/example
+  - name: dummy
+    state: absent
+```
 
 ### rke_auth_mode
 

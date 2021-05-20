@@ -94,3 +94,16 @@ system_images:
 cloud_provider:
   {{ rke_provider_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
+{% if rke_addon_default | default(False) or rke_addon_extra | default(False) %}
+
+addons_include:
+{% for addon in rke_addon_default + rke_addon_extra %}
+{%- if addon.url | default(False) %}
+  - {{ addon.url }}
+{% else %}
+{%- if addon.state | default('present') == 'present' %}
+  - /etc/rke/addons/{{ addon.name }}.yml
+{% endif -%}
+{% endif -%}
+{% endfor %}
+{% endif %}
