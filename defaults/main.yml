@@ -1,23 +1,23 @@
 # Standards: 1.2
 ---
 # @var rke_binary_version:description: Version of the RKE release to use
-rke_binary_version: 1.2.6
+rke_binary_version: 1.2.8
 
 # @var rke_binary_download:description: URL to download the release binary
 rke_binary_download: https://github.com/rancher/rke/releases/download/v{{ rke_binary_version }}/rke_linux-amd64
 
 # @var rke_binary_checksum:description: Checksum of the binary to download
-rke_binary_checksum: sha256:6d4a44931cf2fddbac742b24a4172ecf41ab199eee047cb8fa598e15e45fff8c
+rke_binary_checksum: sha256:b2f45abe7bab2f78d11ef38d3957636f7799bcd79d476a8620f9c220477c8365
 
 # @var rke_kubernetes_version:description: Kubernetes version to install
-rke_kubernetes_version: "1.19"
+rke_kubernetes_version: "1.20"
 
 # @var rke_kubernetes_support:description: Mapping for supported Kubernetes versions
 rke_kubernetes_support:
   "1.17": v1.17.17-rancher2-1
-  "1.18": v1.18.16-rancher1-1
-  "1.19": v1.19.8-rancher1-1
-  "1.20": v1.20.4-rancher1-1
+  "1.18": v1.18.18-rancher1-1
+  "1.19": v1.19.10-rancher1-1
+  "1.20": v1.20.6-rancher1-1
 
 # @var rke_config_dir:description: Path to for configuration and state
 rke_config_dir: /etc/rke
