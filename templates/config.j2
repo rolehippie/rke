@@ -32,15 +32,21 @@ services:
   etcd:
     backup_config:
       enabled: {{ rke_backup_enabled | lower }}
+{% if rke_backup_enabled | default(False) %}
       interval_hours: {{ rke_backup_interval }}
       retention: {{ rke_backup_retention }}
       s3backupconfig:
+{% if rke_s3_endpoint | default(False) %}
         endpoint: {{ rke_s3_endpoint }}
+{% endif %}
         region: {{ rke_s3_region }}
         access_key: {{ rke_s3_access }}
         secret_key: {{ rke_s3_secret }}
         bucket_name: {{ rke_s3_bucket }}
+{% if rke_s3_folder | default(False) %}
         folder: {{ rke_s3_folder }}
+{% endif %}
+{% endif %}
 {% if rke_etcd_config | default(False) %}
     {{ rke_etcd_config | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
