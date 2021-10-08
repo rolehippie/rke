@@ -17,6 +17,7 @@
     state: directory
     owner: root
     group: root
+    mode: u=rwx,g=rx,o=rx
   tags:
     - rke
 
@@ -27,6 +28,7 @@
     state: directory
     owner: root
     group: root
+    mode: u=rwx,g=rx,o=rx
   tags:
     - rke
 
@@ -75,6 +77,7 @@
     chdir: "{{ rke_config_dir }}"
   tags:
     - rke
+    - skip_ansible_later
 
 - name: Write profile script
   template:
@@ -126,6 +129,9 @@
   file:
     path: /etc/kubernetes
     state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
   tags:
     - rke
 
