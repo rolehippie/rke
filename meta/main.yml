@@ -20,6 +20,8 @@
 # None
 # @end
 galaxy_info:
+  role_name: rke
+  namespace: rolehippie
   author: Thomas Boerger
   description: Ansible role to deploy Kubernetes with Rancher Kubernetes Engine
   license: Apache-2.0
