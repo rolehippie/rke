@@ -1,63 +1,64 @@
 # rke
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/rke) [![Testing Build](https://github.com/rolehippie/rke/workflows/testing/badge.svg)](https://github.com/rolehippie/rke/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/rke/workflows/readme/badge.svg)](https://github.com/rolehippie/rke/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/rke/workflows/galaxy/badge.svg)](https://github.com/rolehippie/rke/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/rke)](https://github.com/rolehippie/rke/blob/master/LICENSE) 
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/rke) [![Testing Build](https://github.com/rolehippie/rke/workflows/testing/badge.svg)](https://github.com/rolehippie/rke/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/rke/workflows/readme/badge.svg)](https://github.com/rolehippie/rke/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/rke/workflows/galaxy/badge.svg)](https://github.com/rolehippie/rke/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/rke)](https://github.com/rolehippie/rke/blob/master/LICENSE)
 
-Ansible role to deploy Kubernetes with Rancher Kubernetes Engine. 
+Ansible role to deploy Kubernetes with Rancher Kubernetes Engine.
 
-## Sponsor 
+## Sponsor
 
-[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu) 
+[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu)
 
 Building and improving this Ansible role have been sponsored by my employer **Proact Deutschland GmbH**.
 
 ## Table of content
 
-* [Default Variables](#default-variables)
-  * [rke_addon_default](#rke_addon_default)
-  * [rke_addon_extra](#rke_addon_extra)
-  * [rke_auth_mode](#rke_auth_mode)
-  * [rke_auth_sans](#rke_auth_sans)
-  * [rke_auth_strategy](#rke_auth_strategy)
-  * [rke_backup_enabled](#rke_backup_enabled)
-  * [rke_backup_interval](#rke_backup_interval)
-  * [rke_backup_retention](#rke_backup_retention)
-  * [rke_binary_checksum](#rke_binary_checksum)
-  * [rke_binary_download](#rke_binary_download)
-  * [rke_binary_version](#rke_binary_version)
-  * [rke_cluster_name](#rke_cluster_name)
-  * [rke_config_dir](#rke_config_dir)
-  * [rke_config_group](#rke_config_group)
-  * [rke_config_mode](#rke_config_mode)
-  * [rke_config_owner](#rke_config_owner)
-  * [rke_controller_config](#rke_controller_config)
-  * [rke_copy_kubeconfig](#rke_copy_kubeconfig)
-  * [rke_dns_config](#rke_dns_config)
-  * [rke_etcd_config](#rke_etcd_config)
-  * [rke_external_domain](#rke_external_domain)
-  * [rke_force_update](#rke_force_update)
-  * [rke_images_config](#rke_images_config)
-  * [rke_ingress_config](#rke_ingress_config)
-  * [rke_kubeapi_config](#rke_kubeapi_config)
-  * [rke_kubelet_config](#rke_kubelet_config)
-  * [rke_kubeproxy_config](#rke_kubeproxy_config)
-  * [rke_kubernetes_support](#rke_kubernetes_support)
-  * [rke_kubernetes_version](#rke_kubernetes_version)
-  * [rke_network_options](#rke_network_options)
-  * [rke_network_password](#rke_network_password)
-  * [rke_network_plugin](#rke_network_plugin)
-  * [rke_nodes_config](#rke_nodes_config)
-  * [rke_provider_config](#rke_provider_config)
-  * [rke_registries_config](#rke_registries_config)
-  * [rke_s3_access](#rke_s3_access)
-  * [rke_s3_bucket](#rke_s3_bucket)
-  * [rke_s3_endpoint](#rke_s3_endpoint)
-  * [rke_s3_folder](#rke_s3_folder)
-  * [rke_s3_region](#rke_s3_region)
-  * [rke_s3_secret](#rke_s3_secret)
-  * [rke_scheduler_config](#rke_scheduler_config)
-* [Dependencies](#dependencies)
-* [License](#license)
-* [Author](#author)
+- [Default Variables](#default-variables)
+  - [rke_addon_default](#rke_addon_default)
+  - [rke_addon_extra](#rke_addon_extra)
+  - [rke_auth_mode](#rke_auth_mode)
+  - [rke_auth_sans](#rke_auth_sans)
+  - [rke_auth_strategy](#rke_auth_strategy)
+  - [rke_backup_enabled](#rke_backup_enabled)
+  - [rke_backup_interval](#rke_backup_interval)
+  - [rke_backup_retention](#rke_backup_retention)
+  - [rke_binary_checksum](#rke_binary_checksum)
+  - [rke_binary_download](#rke_binary_download)
+  - [rke_binary_version](#rke_binary_version)
+  - [rke_cluster_name](#rke_cluster_name)
+  - [rke_config_dir](#rke_config_dir)
+  - [rke_config_group](#rke_config_group)
+  - [rke_config_mode](#rke_config_mode)
+  - [rke_config_owner](#rke_config_owner)
+  - [rke_controller_config](#rke_controller_config)
+  - [rke_copy_kubeconfig](#rke_copy_kubeconfig)
+  - [rke_dns_config](#rke_dns_config)
+  - [rke_etcd_config](#rke_etcd_config)
+  - [rke_external_domain](#rke_external_domain)
+  - [rke_force_update](#rke_force_update)
+  - [rke_images_config](#rke_images_config)
+  - [rke_ingress_config](#rke_ingress_config)
+  - [rke_kubeapi_config](#rke_kubeapi_config)
+  - [rke_kubelet_config](#rke_kubelet_config)
+  - [rke_kubeproxy_config](#rke_kubeproxy_config)
+  - [rke_kubernetes_support](#rke_kubernetes_support)
+  - [rke_kubernetes_version](#rke_kubernetes_version)
+  - [rke_network_options](#rke_network_options)
+  - [rke_network_password](#rke_network_password)
+  - [rke_network_plugin](#rke_network_plugin)
+  - [rke_nodes_config](#rke_nodes_config)
+  - [rke_provider_config](#rke_provider_config)
+  - [rke_registries_config](#rke_registries_config)
+  - [rke_s3_access](#rke_s3_access)
+  - [rke_s3_bucket](#rke_s3_bucket)
+  - [rke_s3_endpoint](#rke_s3_endpoint)
+  - [rke_s3_folder](#rke_s3_folder)
+  - [rke_s3_region](#rke_s3_region)
+  - [rke_s3_secret](#rke_s3_secret)
+  - [rke_scheduler_config](#rke_scheduler_config)
+- [Discovered Tags](#discovered-tags)
+- [Dependencies](#dependencies)
+- [License](#license)
+- [Author](#author)
 
 ---
 
@@ -592,9 +593,16 @@ rke_s3_secret:
 rke_scheduler_config:
 ```
 
+## Discovered Tags
+
+**_rke_**
+
+**_skip_ansible_later_**
+
+
 ## Dependencies
 
-* None
+- None
 
 ## License
 
