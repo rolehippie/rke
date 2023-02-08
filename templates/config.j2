@@ -21,7 +21,7 @@ nodes:
 network:
   plugin: {{ rke_network_plugin }}
 {% if rke_network_mtu | default(False) %}
-  mtu {{ rke_network_mtu }}
+  mtu: {{ rke_network_mtu }}
 {% endif %}
 {% if rke_network_options | default(False) %}
   options:
