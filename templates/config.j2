@@ -1,5 +1,6 @@
 cluster_name: {{ rke_cluster_name }}
 kubernetes_version: {{ rke_kubernetes_support[rke_kubernetes_version] }}
+enable_cri_dockerd: {{ rke_enable_cri_dockerd | lower }}
 
 authentication:
   strategy: {{ rke_auth_strategy }}
@@ -19,6 +20,9 @@ nodes:
 
 network:
   plugin: {{ rke_network_plugin }}
+{% if rke_network_mtu | default(False) %}
+  mtu {{ rke_network_mtu }}
+{% endif %}
 {% if rke_network_options | default(False) %}
   options:
     {{ rke_network_options | to_nice_yaml(indent=2) | indent(width=4) | trim }}
@@ -84,6 +88,11 @@ dns:
 
 ingress:
   {{ rke_ingress_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
+{% endif %}
+{% if rke_monitoring_config | default(False) %}
+
+monitoring:
+  {{ rke_monitoring_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
 {% if rke_registries_config | default(False) %}
 

@@ -33,6 +33,9 @@ rke_external_domain:
 # @var rke_cluster_name:description: Name of the Kubernetes cluster
 rke_cluster_name:
 
+# @var rke_enable_cri_dockerd:description: Enable CRI dockerd wrapper
+rke_enable_cri_dockerd: False
+
 # @var rke_auth_strategy:description: Authentication strategy
 rke_auth_strategy: x509
 
@@ -140,6 +143,10 @@ rke_dns_config:
 rke_ingress_config:
   provider: nginx
   dns_policy: ClusterFirstWithHostNet
+
+# @var rke_monitoring_config:description: Monitoring configuration
+rke_monitoring_config:
+  provider: metrics-server
 
 # @var rke_addon_default:description: List of default addons to install
 # @var rke_addon_default:example: >

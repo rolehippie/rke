@@ -30,6 +30,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [rke_controller_config](#rke_controller_config)
   - [rke_copy_kubeconfig](#rke_copy_kubeconfig)
   - [rke_dns_config](#rke_dns_config)
+  - [rke_enable_cri_dockerd](#rke_enable_cri_dockerd)
   - [rke_etcd_config](#rke_etcd_config)
   - [rke_external_domain](#rke_external_domain)
   - [rke_force_update](#rke_force_update)
@@ -40,6 +41,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [rke_kubeproxy_config](#rke_kubeproxy_config)
   - [rke_kubernetes_support](#rke_kubernetes_support)
   - [rke_kubernetes_version](#rke_kubernetes_version)
+  - [rke_monitoring_config](#rke_monitoring_config)
   - [rke_network_options](#rke_network_options)
   - [rke_network_password](#rke_network_password)
   - [rke_network_plugin](#rke_network_plugin)
@@ -314,6 +316,16 @@ rke_dns_config:
     - 8.8.8.8
 ```
 
+### rke_enable_cri_dockerd
+
+Enable CRI dockerd wrapper
+
+#### Default value
+
+```YAML
+rke_enable_cri_dockerd: false
+```
+
 ### rke_etcd_config
 
 Scheduler configuration
@@ -431,6 +443,17 @@ Kubernetes version to install
 
 ```YAML
 rke_kubernetes_version: '1.24'
+```
+
+### rke_monitoring_config
+
+Monitoring configuration
+
+#### Default value
+
+```YAML
+rke_monitoring_config:
+  provider: metrics-server
 ```
 
 ### rke_network_options
