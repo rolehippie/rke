@@ -3,7 +3,6 @@
 - name: Install rke binary
   get_url:
     url: "{{ rke_binary_download }}"
-    checksum: "{{ rke_binary_checksum }}"
     dest: /usr/bin/rke
     owner: root
     group: root

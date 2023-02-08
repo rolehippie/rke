@@ -19,7 +19,6 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [rke_backup_enabled](#rke_backup_enabled)
   - [rke_backup_interval](#rke_backup_interval)
   - [rke_backup_retention](#rke_backup_retention)
-  - [rke_binary_checksum](#rke_binary_checksum)
   - [rke_binary_download](#rke_binary_download)
   - [rke_binary_version](#rke_binary_version)
   - [rke_cluster_name](#rke_cluster_name)
@@ -194,16 +193,6 @@ Retention for etcd backups
 
 ```YAML
 rke_backup_retention: 7
-```
-
-### rke_binary_checksum
-
-Checksum of the binary to download
-
-#### Default value
-
-```YAML
-rke_binary_checksum: sha256:154d55b3a587edc2da497f621f2b302a393cf70e332001fcd2aad612dd479a41
 ```
 
 ### rke_binary_download

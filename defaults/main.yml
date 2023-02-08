@@ -6,9 +6,6 @@ rke_binary_version: 1.4.2
 # @var rke_binary_download:description: URL to download the release binary
 rke_binary_download: https://github.com/rancher/rke/releases/download/v{{ rke_binary_version }}/rke_linux-amd64
 
-# @var rke_binary_checksum:description: Checksum of the binary to download
-rke_binary_checksum: sha256:154d55b3a587edc2da497f621f2b302a393cf70e332001fcd2aad612dd479a41
-
 # @var rke_kubernetes_version:description: Kubernetes version to install
 rke_kubernetes_version: "1.24"
 
