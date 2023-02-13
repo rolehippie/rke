@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/rolehippie/rke/compare/v1.1.0...v1.2.0) (2023-02-13)
+
+
+### Features
+
+* add new options for latest rke support ([4004d3d](https://github.com/rolehippie/rke/commit/4004d3d0e99abbb4b9255a5999650d496e24d7ee))
+
+
+### Bugfixes
+
+* drop checksum to be prepared for renovate ([e2c6fa9](https://github.com/rolehippie/rke/commit/e2c6fa95d4e59ef996bdcf566ac859ff158aac54))
+
 ## [1.1.0](https://github.com/rolehippie/rke/compare/v1.0.0...v1.1.0) (2023-02-06)
 
 
