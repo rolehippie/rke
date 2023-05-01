@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/rolehippie/rke/compare/v1.2.0...v1.3.0) (2023-05-01)
+
+
+### Features
+
+* use new rke version, update kubernetes versions ([d116811](https://github.com/rolehippie/rke/commit/d1168111ddf1f576e31fc5d655034991ef2eccb8))
+
 ## [1.2.0](https://github.com/rolehippie/rke/compare/v1.1.0...v1.2.0) (2023-02-13)
 
 
