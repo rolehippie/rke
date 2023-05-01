@@ -224,7 +224,7 @@ Version of the RKE release to use
 #### Default value
 
 ```YAML
-rke_binary_version: 1.4.2
+rke_binary_version: 1.4.5
 ```
 
 ### rke_cluster_name
@@ -424,15 +424,15 @@ Mapping for supported Kubernetes versions
 
 ```YAML
 rke_kubernetes_support:
-  '1.17': v1.17.17-rancher1-3
+  '1.17': v1.17.17-rancher2-4
   '1.18': v1.18.20-rancher1-3
-  '1.19': v1.19.16-rancher1-6
-  '1.20': v1.20.15-rancher1-4
+  '1.19': v1.19.16-rancher2-1
+  '1.20': v1.20.15-rancher2-2
   '1.21': v1.21.14-rancher1-1
-  '1.22': v1.22.17-rancher1-1
-  '1.23': v1.23.15-rancher1-1
-  '1.24': v1.24.9-rancher1-1
-  '1.25': v1.25.5-rancher1-1
+  '1.22': v1.22.17-rancher1-2
+  '1.23': v1.23.16-rancher2-2
+  '1.24': v1.24.13-rancher2-1
+  '1.25': v1.25.9-rancher2-1
 ```
 
 ### rke_kubernetes_version
@@ -442,7 +442,7 @@ Kubernetes version to install
 #### Default value
 
 ```YAML
-rke_kubernetes_version: '1.24'
+rke_kubernetes_version: '1.25'
 ```
 
 ### rke_monitoring_config
