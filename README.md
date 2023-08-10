@@ -2,7 +2,7 @@
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&amp;logoColor=white)](https://github.com/rolehippie/rke)
 [![General Workflow](https://github.com/rolehippie/rke/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/rke/actions/workflows/general.yml)
-[![Readme Workflow](https://github.com/rolehippie/rke/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/rke/actions/workflows/readme.yml)
+[![Readme Workflow](https://github.com/rolehippie/rke/actions/workflows/docs.yml/badge.svg)](https://github.com/rolehippie/rke/actions/workflows/docs.yml)
 [![Galaxy Workflow](https://github.com/rolehippie/rke/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/rke/actions/workflows/galaxy.yml)
 [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/rke)](https://github.com/rolehippie/rke/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/role-rolehippie.rke-blue)](https://galaxy.ansible.com/rolehippie/rke)
@@ -224,7 +224,7 @@ Version of the RKE release to use
 #### Default value
 
 ```YAML
-rke_binary_version: 1.4.5
+rke_binary_version: 1.4.8
 ```
 
 ### rke_cluster_name
@@ -430,9 +430,10 @@ rke_kubernetes_support:
   '1.20': v1.20.15-rancher2-2
   '1.21': v1.21.14-rancher1-1
   '1.22': v1.22.17-rancher1-2
-  '1.23': v1.23.16-rancher2-2
-  '1.24': v1.24.13-rancher2-1
-  '1.25': v1.25.9-rancher2-1
+  '1.23': v1.23.16-rancher2-3
+  '1.24': v1.24.16-rancher1-1
+  '1.25': v1.25.12-rancher1-1
+  '1.26': v1.26.7-rancher1-1
 ```
 
 ### rke_kubernetes_version
@@ -442,7 +443,7 @@ Kubernetes version to install
 #### Default value
 
 ```YAML
-rke_kubernetes_version: '1.25'
+rke_kubernetes_version: '1.26'
 ```
 
 ### rke_monitoring_config
