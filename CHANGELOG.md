@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/rolehippie/rke/compare/v1.3.0...v1.4.0) (2023-08-14)
+
+
+### Features
+
+* upgrade rke to v1.4.8 including kubernetes versions ([953f824](https://github.com/rolehippie/rke/commit/953f824ed082ab0ea3e41ac031ee3b136b81f134))
+
 ## [1.3.0](https://github.com/rolehippie/rke/compare/v1.2.0...v1.3.0) (2023-05-01)
 
 
