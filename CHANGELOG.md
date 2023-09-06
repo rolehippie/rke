@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/rolehippie/rke/compare/v1.4.0...v1.5.0) (2023-09-06)
+
+
+### Features
+
+* add new option to ignore docker version ([6c7c7f7](https://github.com/rolehippie/rke/commit/6c7c7f79f902995d0429015e2199f33e2199d412))
+* make it easier to enforce specific rancher versions ([e5386eb](https://github.com/rolehippie/rke/commit/e5386eb68e889b50ea811aefd69f516383031ece))
+
 ## [1.4.0](https://github.com/rolehippie/rke/compare/v1.3.0...v1.4.0) (2023-08-14)
 
 
