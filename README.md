@@ -39,6 +39,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [rke_etcd_config](#rke_etcd_config)
   - [rke_external_domain](#rke_external_domain)
   - [rke_force_update](#rke_force_update)
+  - [rke_ignore_docker_version](#rke_ignore_docker_version)
   - [rke_images_config](#rke_images_config)
   - [rke_ingress_config](#rke_ingress_config)
   - [rke_kubeapi_config](#rke_kubeapi_config)
@@ -317,7 +318,7 @@ rke_dns_config:
 
 ### rke_enable_cri_dockerd
 
-Enable CRI dockerd wrapper
+Ignore unsupported Docker versions
 
 #### Default value
 
@@ -353,6 +354,14 @@ Force cluster update even without config changes
 
 ```YAML
 rke_force_update: false
+```
+
+### rke_ignore_docker_version
+
+#### Default value
+
+```YAML
+rke_ignore_docker_version: false
 ```
 
 ### rke_images_config
