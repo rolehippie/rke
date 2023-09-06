@@ -1,6 +1,7 @@
 cluster_name: {{ rke_cluster_name }}
 kubernetes_version: {{ rke_kubernetes_support[rke_kubernetes_version] }}
 enable_cri_dockerd: {{ rke_enable_cri_dockerd | lower }}
+ignore_docker_version: {{ rke_ignore_docker_version | lower }}
 
 authentication:
   strategy: {{ rke_auth_strategy }}

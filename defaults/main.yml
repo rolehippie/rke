@@ -34,6 +34,9 @@ rke_cluster_name:
 # @var rke_enable_cri_dockerd:description: Enable CRI dockerd wrapper
 rke_enable_cri_dockerd: False
 
+# @var rke_enable_cri_dockerd:description: Ignore unsupported Docker versions
+rke_ignore_docker_version: False
+
 # @var rke_auth_strategy:description: Authentication strategy
 rke_auth_strategy: x509
 
