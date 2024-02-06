@@ -1,6 +1,6 @@
 ---
 - name: Install rke binary
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ rke_binary_download }}"
     dest: /usr/bin/rke
     owner: root
@@ -10,7 +10,7 @@
     - rke
 
 - name: Create config directory
-  file:
+  ansible.builtin.file:
     path: "{{ rke_config_dir }}"
     state: directory
     owner: root
@@ -21,7 +21,7 @@
 
 - name: Create addons directory
   when: (rke_addon_default + rke_addon_extra) | length > 0
-  file:
+  ansible.builtin.file:
     path: "{{ rke_config_dir }}/addons"
     state: directory
     owner: root
@@ -36,7 +36,7 @@
     label: "{{ item.name }}"
   when: item.url | default(False) or item.state | default('present') == 'present'
   register: rke_addon_create
-  copy:
+  ansible.builtin.copy:
     content: "{{ item.content | to_nice_yaml(indent=2) }}"
     dest: "{{ rke_config_dir }}/addons/{{ item.name }}.yml"
     owner: root
@@ -51,7 +51,7 @@
     label: "{{ item.name }}"
   when: item.state | default('present') == 'absent'
   register: rke_addon_remove
-  file:
+  ansible.builtin.file:
     path: "{{ rke_config_dir }}/addons/{{ item.name }}.yml"
     state: absent
   tags:
@@ -59,7 +59,7 @@
 
 - name: Write cluster config
   register: rke_config_file
-  template:
+  ansible.builtin.template:
     src: config.j2
     dest: "{{ rke_config_dir }}/cluster.yml"
     owner: root
@@ -70,7 +70,7 @@
 
 - name: Force cluster update
   when: rke_force_update or rke_config_file.changed or rke_addon_create.changed or rke_addon_remove.changed
-  shell:
+  ansible.builtin.shell:
     cmd: rke up | tee -a /var/log/rke.log
     chdir: "{{ rke_config_dir }}"
   tags:
@@ -78,7 +78,7 @@
     - skip_ansible_later
 
 - name: Write profile script
-  template:
+  ansible.builtin.template:
     src: profile.j2
     dest: /etc/profile.d/rke.sh
     owner: root
@@ -93,7 +93,7 @@
   until: rke_config_check.stat.exists
   retries: 10
   delay: 5
-  stat:
+  ansible.builtin.stat:
     path: "{{ rke_config_dir }}/kube_config_cluster.yml"
   tags:
     - rke
@@ -101,21 +101,21 @@
 - name: Fetch kube config
   when: rke_config_check.stat.exists | default(False)
   register: rke_config_slurp
-  slurp:
+  ansible.builtin.slurp:
     src: "{{ rke_config_dir }}/kube_config_cluster.yml"
   tags:
     - rke
 
 - name: Extract kube config
   when: rke_config_slurp.content | default(False)
-  set_fact:
+  ansible.builtin.set_fact:
     rke_config_content: "{{ rke_config_slurp.content | b64decode | from_yaml }}"
   tags:
     - rke
 
 - name: Update kube config
   when: rke_config_slurp.content | default(False) and rke_external_domain | default(False)
-  set_fact:
+  ansible.builtin.set_fact:
     rke_config_content: "{{ rke_config_content | combine({ 'clusters': [ { 'name': rke_cluster_name, 'cluster': { 'certificate-authority-data': rke_config_content['clusters'][0]['cluster']['certificate-authority-data'], 'server': rke_external_domain } } ] }, recursive=True) }}"
   tags:
     - rke
@@ -124,7 +124,7 @@
   when: rke_config_slurp.content | default(False)
   loop: "{{ rke_copy_kubeconfig | sort }}"
   delegate_to: "{{ item }}"
-  file:
+  ansible.builtin.file:
     path: /etc/kubernetes
     state: directory
     owner: root
@@ -137,7 +137,7 @@
   when: rke_config_slurp.content | default(False)
   loop: "{{ rke_copy_kubeconfig | sort }}"
   delegate_to: "{{ item }}"
-  copy:
+  ansible.builtin.copy:
     content: "{{ rke_config_content | to_nice_yaml(indent=2) }}"
     dest: /etc/kubernetes/admin.conf
     owner: "{{ rke_config_owner }}"
