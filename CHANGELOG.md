@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0](https://github.com/rolehippie/rke/compare/v1.5.0...v2.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([2ed778d](https://github.com/rolehippie/rke/commit/2ed778decd7f16a35d5870ca828414bef31aa69d))
+* used full qualified collection names ([838f9d1](https://github.com/rolehippie/rke/commit/838f9d16b323e62914f7a2c104c6200eb5d46ad7))
+
 ## [1.5.0](https://github.com/rolehippie/rke/compare/v1.4.0...v1.5.0) (2023-09-06)
 
 
