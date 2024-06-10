@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
 
       - name: Role linting
-        uses: actionhippie/ansible-later@v3
+        uses: actionhippie/ansible-later@v4
 
   testing:
     runs-on: ubuntu-latest
