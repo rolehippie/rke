@@ -1,4 +1,4 @@
-# rke
+# workspace
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/rke)
 [![General Workflow](https://github.com/rolehippie/rke/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/rke/actions/workflows/general.yml)
@@ -213,8 +213,8 @@ URL to download the release binary
 #### Default value
 
 ```YAML
-rke_binary_download: https://github.com/rancher/rke/releases/download/v{{ rke_binary_version
-  }}/rke_linux-amd64
+rke_binary_download: https://github.com/rancher/rke/releases/download/v{{ 
+  rke_binary_version }}/rke_linux-amd64
 ```
 
 ### rke_binary_version
@@ -632,7 +632,6 @@ rke_scheduler_config:
 **_rke_**
 
 **_skip_ansible_later_**
-
 
 ## Dependencies
 
