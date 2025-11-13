@@ -9,7 +9,7 @@ authentication:
 
 authorization:
   mode: {{ rke_auth_mode }}
-{% if rke_nodes_config | default(False) %}
+{% if rke_nodes_config | default(false) %}
 
 nodes:
 {% if not rke_nodes_config is string and rke_nodes_config is iterable %}
@@ -21,10 +21,10 @@ nodes:
 
 network:
   plugin: {{ rke_network_plugin }}
-{% if rke_network_mtu | default(False) %}
+{% if rke_network_mtu | default(false) %}
   mtu: {{ rke_network_mtu }}
 {% endif %}
-{% if rke_network_options | default(False) %}
+{% if rke_network_options | default(false) %}
   options:
     {{ rke_network_options | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
@@ -37,84 +37,84 @@ services:
   etcd:
     backup_config:
       enabled: {{ rke_backup_enabled | lower }}
-{% if rke_backup_enabled | default(False) %}
+{% if rke_backup_enabled | default(false) %}
       interval_hours: {{ rke_backup_interval }}
       retention: {{ rke_backup_retention }}
       s3backupconfig:
-{% if rke_s3_endpoint | default(False) %}
+{% if rke_s3_endpoint | default(false) %}
         endpoint: {{ rke_s3_endpoint }}
 {% endif %}
         region: {{ rke_s3_region }}
         access_key: {{ rke_s3_access }}
         secret_key: {{ rke_s3_secret }}
         bucket_name: {{ rke_s3_bucket }}
-{% if rke_s3_folder | default(False) %}
+{% if rke_s3_folder | default(false) %}
         folder: {{ rke_s3_folder }}
 {% endif %}
 {% endif %}
-{% if rke_etcd_config | default(False) %}
+{% if rke_etcd_config | default(false) %}
     {{ rke_etcd_config | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
-{% if rke_kubeapi_config | default(False) %}
+{% if rke_kubeapi_config | default(false) %}
 
   kube-api:
     {{ rke_kubeapi_config | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
-{% if rke_controller_config | default(False) %}
+{% if rke_controller_config | default(false) %}
 
   kube-controller:
     {{ rke_controller_config | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
-{% if rke_kubelet_config | default(False) %}
+{% if rke_kubelet_config | default(false) %}
 
   kubelet:
     {{ rke_kubelet_config | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
-{% if rke_kubeproxy_config | default(False) %}
+{% if rke_kubeproxy_config | default(false) %}
 
   kubeproxy:
     {{ rke_kubeproxy_config | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
-{% if rke_scheduler_config | default(False) %}
+{% if rke_scheduler_config | default(false) %}
 
   scheduler:
     {{ rke_scheduler_config | to_nice_yaml(indent=2) | indent(width=4) | trim }}
 {% endif %}
-{% if rke_dns_config | default(False) %}
+{% if rke_dns_config | default(false) %}
 
 dns:
   {{ rke_dns_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
-{% if rke_ingress_config | default(False) %}
+{% if rke_ingress_config | default(false) %}
 
 ingress:
   {{ rke_ingress_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
-{% if rke_monitoring_config | default(False) %}
+{% if rke_monitoring_config | default(false) %}
 
 monitoring:
   {{ rke_monitoring_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
-{% if rke_registries_config | default(False) %}
+{% if rke_registries_config | default(false) %}
 
 private_registries:
   {{ rke_registries_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
-{% if rke_images_config | default(False) %}
+{% if rke_images_config | default(false) %}
 
 system_images:
   {{ rke_images_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
-{% if rke_provider_config | default(False) %}
+{% if rke_provider_config | default(false) %}
 
 cloud_provider:
   {{ rke_provider_config | to_nice_yaml(indent=2) | indent(width=2) | trim }}
 {% endif %}
-{% if rke_addon_default | default(False) or rke_addon_extra | default(False) %}
+{% if rke_addon_default | default(false) or rke_addon_extra | default(false) %}
 
 addons_include:
 {% for addon in rke_addon_default + rke_addon_extra %}
-{%- if addon.url | default(False) %}
+{%- if addon.url | default(false) %}
   - {{ addon.url }}
 {% else %}
 {%- if addon.state | default('present') == 'present' %}

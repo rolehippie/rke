@@ -34,7 +34,7 @@
   loop: "{{ rke_addon_default + rke_addon_extra }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.url | default(False) or item.state | default('present') == 'present'
+  when: item.url | default(false) or item.state | default('present') == 'present'
   register: rke_addon_create
   ansible.builtin.copy:
     content: "{{ item.content | to_nice_yaml(indent=2) }}"
@@ -88,7 +88,7 @@
     - rke
 
 - name: Check kube config
-  when: rke_copy_kubeconfig | default(False)
+  when: rke_copy_kubeconfig | default(false)
   register: rke_config_check
   until: rke_config_check.stat.exists
   retries: 10
@@ -99,7 +99,7 @@
     - rke
 
 - name: Fetch kube config
-  when: rke_config_check.stat.exists | default(False)
+  when: rke_config_check.stat.exists | default(false)
   register: rke_config_slurp
   ansible.builtin.slurp:
     src: "{{ rke_config_dir }}/kube_config_cluster.yml"
@@ -107,21 +107,21 @@
     - rke
 
 - name: Extract kube config
-  when: rke_config_slurp.content | default(False)
+  when: rke_config_slurp.content | default(false)
   ansible.builtin.set_fact:
     rke_config_content: "{{ rke_config_slurp.content | b64decode | from_yaml }}"
   tags:
     - rke
 
 - name: Update kube config
-  when: rke_config_slurp.content | default(False) and rke_external_domain | default(False)
+  when: rke_config_slurp.content | default(false) and rke_external_domain | default(false)
   ansible.builtin.set_fact:
-    rke_config_content: "{{ rke_config_content | combine({ 'clusters': [ { 'name': rke_cluster_name, 'cluster': { 'certificate-authority-data': rke_config_content['clusters'][0]['cluster']['certificate-authority-data'], 'server': rke_external_domain } } ] }, recursive=True) }}"
+    rke_config_content: "{{ rke_config_content | combine({ 'clusters': [ { 'name': rke_cluster_name, 'cluster': { 'certificate-authority-data': rke_config_content['clusters'][0]['cluster']['certificate-authority-data'], 'server': rke_external_domain } } ] }, recursive=true) }}"
   tags:
     - rke
 
 - name: Create kube directory
-  when: rke_config_slurp.content | default(False)
+  when: rke_config_slurp.content | default(false)
   loop: "{{ rke_copy_kubeconfig | sort }}"
   delegate_to: "{{ item }}"
   ansible.builtin.file:
@@ -134,7 +134,7 @@
     - rke
 
 - name: Copy kube config
-  when: rke_config_slurp.content | default(False)
+  when: rke_config_slurp.content | default(false)
   loop: "{{ rke_copy_kubeconfig | sort }}"
   delegate_to: "{{ item }}"
   ansible.builtin.copy:

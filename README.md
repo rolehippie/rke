@@ -1,4 +1,4 @@
-# workspace
+# rke
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/rke)
 [![General Workflow](https://github.com/rolehippie/rke/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/rke/actions/workflows/general.yml)
@@ -556,7 +556,7 @@ rke_registries_config:
   - url: registry.foobar.com
     user: username
     password: p455w0rd
-    is_default: True
+    is_default: true
 ```
 
 ### rke_s3_access

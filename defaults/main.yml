@@ -31,10 +31,10 @@ rke_external_domain:
 rke_cluster_name:
 
 # @var rke_enable_cri_dockerd:description: Enable CRI dockerd wrapper
-rke_enable_cri_dockerd: False
+rke_enable_cri_dockerd: false
 
 # @var rke_enable_cri_dockerd:description: Ignore unsupported Docker versions
-rke_ignore_docker_version: False
+rke_ignore_docker_version: false
 
 # @var rke_auth_strategy:description: Authentication strategy
 rke_auth_strategy: x509
@@ -81,7 +81,7 @@ rke_network_options:
 rke_network_password: p455w0rd
 
 # @var rke_backup_enabled:description: Enable etcd backups
-rke_backup_enabled: False
+rke_backup_enabled: false
 
 # @var rke_backup_interval:description: Interval for etcd backups
 rke_backup_interval: 24
@@ -112,11 +112,11 @@ rke_etcd_config:
 
 # @var rke_etcd_config:description: Kubeapi configuration
 rke_kubeapi_config:
-  always_pull_images: True
+  always_pull_images: true
   audit_log:
-    enabled: True
+    enabled: true
   secrets_encryption_config:
-    enabled: True
+    enabled: true
 
 # @var rke_etcd_config:description: Controller configuration
 rke_controller_config:
@@ -201,7 +201,7 @@ rke_addon_extra: []
 #   - url: registry.foobar.com
 #     user: username
 #     password: p455w0rd
-#     is_default: True
+#     is_default: true
 # @end
 rke_registries_config:
 
@@ -236,6 +236,6 @@ rke_config_group: root
 rke_config_mode: u=rw,g=r,o=
 
 # @var rke_force_update:description: Force cluster update even without config changes
-rke_force_update: False
+rke_force_update: false
 
 ...
