@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/rolehippie/rke/compare/v2.0.0...v2.1.0) (2025-11-17)
+
+
+### Features
+
+* apply new repo structure and update linting ([ccf9235](https://github.com/rolehippie/rke/commit/ccf9235d8fd301e9a6ae16b059200523ec2b4163))
+
 ## [2.0.0](https://github.com/rolehippie/rke/compare/v1.5.0...v2.0.0) (2024-02-12)
 
 
