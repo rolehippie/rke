@@ -29,12 +29,12 @@ jobs:
             {"contents": "write"}
 
       - name: Checkout source
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
         with:
           token: ${{ steps.token.outputs.token }}
 
       - name: Generate readme
-        uses: actionhippie/ansible-doctor@b1c394cec3fb1b7a2aa90cb05b7b66cc7f71a72b # v6
+        uses: actionhippie/ansible-doctor@05255999af5dc3f717e609eece7f77f8211b3825 # v6
         with:
           force: true
           verbose: true
