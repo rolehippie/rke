@@ -213,8 +213,7 @@ URL to download the release binary
 #### Default value
 
 ```YAML
-rke_binary_download: https://github.com/rancher/rke/releases/download/v{{ 
-  rke_binary_version }}/rke_linux-amd64
+rke_binary_download: https://github.com/rancher/rke/releases/download/v{{ rke_binary_version }}/rke_linux-amd64
 ```
 
 ### rke_binary_version
