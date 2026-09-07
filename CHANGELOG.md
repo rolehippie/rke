@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.3.0](https://github.com/rolehippie/rke/compare/v2.2.0...v2.3.0) (2026-09-07)
+
+### Features
+
+* add separate requirements for molecule run ([ad499f3](https://github.com/rolehippie/rke/commit/ad499f303ee7cbeb4993c5b338b5dcfcf9cdc87d))
+
 ## [2.2.0](https://github.com/rolehippie/rke/compare/v2.1.0...v2.2.0) (2026-07-27)
 
 ## [2.1.0](https://github.com/rolehippie/rke/compare/v2.0.0...v2.1.0) (2025-11-17)
