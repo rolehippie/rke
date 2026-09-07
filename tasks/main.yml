@@ -75,7 +75,6 @@
     chdir: "{{ rke_config_dir }}"
   tags:
     - rke
-    - skip_ansible_later
 
 - name: Write profile script
   ansible.builtin.template:
